@@ -5,11 +5,13 @@
 ## Windows : 
 
 `Setup` Setup.bat
+
 `Run` Start.bat
 
 ## Linux : 
 
 `Setup` python -m pip install -r requirements.txt
+
 `Run` python Searcher.py
 
 # Gaide :‌
