@@ -2,13 +2,7 @@
 ## Run : 
 ### Linux
 ```
-apt update
-```
-```
-apt upgrade -y
-```
-```
-pip install -r requirements.txt
+apt update && apt upgrade -y && pip install -r requirements.txt
 ```
 ```
 python3 main.py
