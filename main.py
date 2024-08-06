@@ -1,14 +1,18 @@
 import requests
 import threading
-from colorama import Fore
+from colorama import Fore, Style
 import colorama
 import pyfiglet
 import os
 
-os.system('cls' if {os.name} == 'nt' else 'clear')
-print(colorama.Fore.RED)
+if os.name == 'nt':
+    os.system('cls')
+else:
+    os.system('clear')
+
+print(Fore.RED)
 pyfiglet.print_figlet("Asylum")
-print(colorama.Fore.RESET)
+print(Style.RESET_ALL)
 print("     e.g: https://example.com")
 print('')
 
@@ -16,7 +20,7 @@ def make_request(link):
     return requests.get(link)
 
 try:
-    target = input("Enter URL===> ")
+    target = input("Enter URL ===>: ")
 
     try:
         test_request = requests.get(target)
@@ -26,7 +30,7 @@ try:
 
     with open("page.txt", 'r') as f:
         for word in f:
-            link = target + "/" + word.strip()
+            link = f"{target}/{word.strip()}"
             t = threading.Thread(target=make_request, args=(link,))
             t.start()
             t.join()
@@ -34,12 +38,12 @@ try:
             result = make_request(link)
 
             if result.status_code == 200:
-                print(colorama.Fore.GREEN)
+                print(Fore.GREEN)
                 print("[+] Found", result.url)
-                print(colorama.Fore.RESET)
+                print(Style.RESET_ALL)
             else:
-                print(colorama.Fore.LIGHTRED_EX)
+                print(Fore.LIGHTRED_EX)
                 print("[-] Not Found", result.url)
-                print(colorama.Fore.RESET)
+                print(Style.RESET_ALL)
 except Exception as e:
     print("Please Check URL or Internet: ", str(e))
